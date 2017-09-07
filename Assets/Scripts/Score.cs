@@ -21,12 +21,12 @@ public class Score : MonoBehaviour
     void Update()
     {
 
-        if (ball.transform.position.x <= -17f)
+        if (ball.transform.position.x <= -35f)
         {
             leftScore++;
         }
 
-        if (ball.transform.position.x >= 17f)
+        if (ball.transform.position.x >= 35f)
         {
             rightScore++;
         }
