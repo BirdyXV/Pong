@@ -3,33 +3,42 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
 
-public class Score : MonoBehaviour
+namespace Score
 {
-    public Text scoreBoard;
-    public GameObject ball;
 
-    private int leftScore = 0;
-    private int rightScore = 0;
-
-    // Use this for initialization
-    void Start()
+    public class Score : MonoBehaviour
     {
-        ball = GameObject.Find("PongBall");
-    }
+        public Text scoreBoard;
+        public GameObject ball;
 
-    // Update is called once per frame
-    void Update()
-    {
-
-        if (ball.transform.position.x <= -35f)
+        private int leftScore = 0;
+        private int rightScore = 0;
+        public bool scoreChange;
+        // Use this for initialization
+        void Start()
         {
-            leftScore++;
+            ball = GameObject.Find("PongBall");
+
         }
 
-        if (ball.transform.position.x >= 35f)
+        // Update is called once per frame
+        void Update()
         {
-            rightScore++;
-        }
 
+            if (ball.transform.position.x <= -35f && !scoreChange)
+            {
+                rightScore++;
+                scoreChange = true;
+            }
+
+            if (ball.transform.position.x >= 35f && scoreChange)
+            {
+                leftScore++;
+                scoreChange = true;
+            }
+
+            scoreBoard.text = leftScore.ToString() + " - " + rightScore.ToString();
+
+        }
     }
 }
