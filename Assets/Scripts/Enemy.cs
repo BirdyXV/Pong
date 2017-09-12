@@ -6,7 +6,6 @@ public class Enemy : MonoBehaviour
 {
     public GameObject Ball;
 
-
     void Update()
     {
         // Calling Move

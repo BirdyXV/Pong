@@ -11,7 +11,7 @@ public class PaddleMovement : MonoBehaviour
     {
         // Creating 'v' variable and getting the vertical axis 
         float v = Input.GetAxis("Vertical");
-        // Makes the ball move up and down with 'W' 
+        // Makes the ball move up and down with 'W' & 'S'
         GetComponent<Rigidbody2D>().velocity = new Vector2(0, v) * speed;
     }
 }

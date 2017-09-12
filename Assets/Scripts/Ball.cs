@@ -8,10 +8,12 @@ namespace Score
     public class Ball : MonoBehaviour
     {
         public int myDir;
-        private float y;
         public float speed = 30;
         public Score score;
         public float resetTime;
+
+        private float y;
+
         void Start()
         {
             // Calling initial velocity
@@ -20,8 +22,8 @@ namespace Score
 
         void Update()
         {
-            // Makes the ball respawn and stay in place for x amount of seconds
 
+            // Makes the ball respawn and stay in place for x amount of seconds
             if (this.transform.position.x >= 35f)
             {
                 this.transform.position = new Vector3(0f, 0f, 0f);
@@ -29,6 +31,7 @@ namespace Score
                 Invoke("ReSet", resetTime);
             }
 
+            // Makes the ball respawn and stay in place for x amount of seconds
             if (this.transform.position.x <= -35f)
             {
                 this.transform.position = new Vector3(0f, 0f, 0f);
@@ -81,12 +84,12 @@ namespace Score
         void ReSet()
         {
             // Makes the ball rebound
-
             Vector2 dir = new Vector2(myDir, y).normalized;
 
             // Makes the ball rebound in different directions 
             GetComponent<Rigidbody2D>().velocity = dir * speed;
 
+            // Making the scoreChange boolean = false so the score doesn't continuously ascend
             score.scoreChange = false;
         }
     }
