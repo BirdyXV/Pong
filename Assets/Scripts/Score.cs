@@ -9,15 +9,15 @@ namespace Score
     public class Score : MonoBehaviour
     {
         public Text scoreBoard;
-        public Text playerText;
-        public Text enemyText;
+
+        [HideInInspector]
+        public bool scoreChange;
 
 
         private GameObject ball;
         private int leftScore = 0;
         private int rightScore = 0;
-        public bool scoreChange;
-        // Use this for initialization
+
         void Start()
         {
             // Finding the pong ball
@@ -27,45 +27,29 @@ namespace Score
         // Update is called once per frame
         void Update()
         {
+            // Calling functions so they will work
             ScoreChange();
-            PlayerWin();
-            EnemyWin();
         }
 
         void ScoreChange()
         {
-            // If the ball goes past -35 on the x then the  Enemy's score will ascend by 1
+            // If the ball is at -35 on x
             if (ball.transform.position.x <= -35f && !scoreChange)
             {
+                // The score will add 1 point to the Enemy
                 rightScore++;
                 scoreChange = true;
             }
 
-            // If the ball goes past 35 on the x then the Player's score will ascend by 1
+            // If the ball is at 35 on x
             if (ball.transform.position.x >= 35f && !scoreChange)
             {
+                // The score will add 1 point to the Player
                 leftScore++;
                 scoreChange = true;
             }
-
             // Makes the UI Text ascend
             scoreBoard.text = leftScore.ToString() + " - " + rightScore.ToString();
-        }
-
-        void PlayerWin()
-        {
-            if (leftScore > 10)
-            {
-                Application.Quit();
-            }
-        }
-
-        void EnemyWin()
-        {
-            if (rightScore > 10)
-            {
-                Application.Quit();
-            }
         }
     }
 }
